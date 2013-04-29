@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dragon curve</title>
+
+    <meta charset="utf-8" />
+
+    <!-- jquery dependencies -->
+    <script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"><!-- --></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.min.js"><!-- --></script>
+    <script type="text/javascript" src="js/jquery/jquery-circle-slider-1.0.min.js"><!-- --></script>
+
+    <!-- dragon curve box and modules -->
+    <script type="text/javascript" src="js/dragon-curve/DragonCurveBox.js"><!-- --></script>
+
+    <script type="text/javascript" src="js/dragon-curve/modules/Commons.js"><!-- --></script>
+    <script type="text/javascript" src="js/dragon-curve/modules/DragonCurveDrawingTools.js"><!-- --></script>
+    <script type="text/javascript" src="js/dragon-curve/modules/DragonCurveFactory.js"><!-- --></script>
+    <script type="text/javascript" src="js/dragon-curve/modules/Event.js"><!-- --></script>
+    <script type="text/javascript" src="js/dragon-curve/modules/Validator.js"><!-- --></script>
+
+    <!-- Application initializer -->
+    <script type="text/javascript" src="js/ApplicationInitializer.js"><!-- --></script>
+
+    <!--<link type="text/css" rel="stylesheet" href="jquery/css/default/jquery-ui.css" />-->
+    <link type="text/css" rel="stylesheet" href="css/metro/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="css/jquery-circle-slider.css" />
+    <link type="text/css" rel="stylesheet" href="css/dragon-curve.css" />
+
+</head>
+<body>
+
+    <section id="accordeon">
+
+        <h3>About dragon curve</h3>
+        <section id="about">
+            <h1>Dragon curve</h1>
+            <div class="clarification">From Wikipedia, the free encyclopedia</div>
+
+            <div>
+                A <b>dragon curve</b> is any member of a family of self-similar fractal curves, which can be approximated by recursive methods such as Lindenmayer systems.
+                <br />
+                <img src="css/img/Dragon_curve_animation.gif" alt="Dragon curve" />
+            </div>
+
+            <h1>Heighway dragon</h1>
+
+            <img alt="The Heighway dragon" src="css/img/Heighway_dragon_curve.jpg" style="float: right; margin: 10px;" />
+            <div>
+                The Heighway dragon (also known as the Harter–Heighway dragon or the Jurassic Park dragon) was first investigated by NASA physicists John Heighway, Bruce Banks, and William Harter. It was described by Martin Gardner in his Scientific American column Mathematical Games in 1967. Many of its properties were first published by Chandler Davis and Donald Knuth. It appeared on the section title pages of the Michael Crichton novel Jurassic Park.
+            </div>
+
+            <h1>Construction</h1>
+            <div>
+                It can be written as a Lindenmayer system with
+                <ul>
+                    <li>angle 90°</li>
+                    <li>initial string FX</li>
+                    <li>
+                        string rewriting rules
+                        <ul>
+                            <li>X ↦ X+YF+</li>
+                            <li>Y ↦ −FX−Y.</li>
+                        </ul>
+                    </li>
+                </ul>
+                That can be described this way : Starting from a base segment, replace each segment by 2 segments with a right angle and with a rotation
+            </div>
+
+            <h1>Dimensions</h1>
+            <div>
+                <ul>
+                    <li>
+                        In spite of its strange aspect, the Heighway dragon curve has simple dimensions. Note that the dimensions 1, and 1.5 are limits and not actual values.
+                        <br />
+                        <img src="css/img/Dragon_curve_dimensions.gif" alt="Dragon curve dimensions" />
+                    </li>
+                    <li>
+                        Its <b>surface</b> is also quite simple : If the initial segment equals 1, then its surface equals &frac12;. This result comes from its paving properties.
+                    </li>
+                    <li>
+                        Its boundary has an infinite length, since it increases by a factor of &radical;2 every iteration.
+                    </li>
+                    <li>
+                        The curve <b>never crosses itself</b>.
+                    </li>
+                    <li>
+                        Many self-similarities can be seen in the Heighway dragon curve. The most obvious is the repetition of the same pattern tilted by 45° and with a reduction ratio of .
+                        <br />
+                        <img src="css/img/Auto_similarity_dragon_curve.gif" alt="Self-similarities" />
+                    </li>
+                    <li>
+                        Its <b>fractal dimension</b> can be calculated : <img src="css/img/fractal_dimension.png" alt="Fractal dimension" style="display: inline;" />. That makes it a space-filling curve.
+                    </li>
+                    <li>
+                        <b>The fractal dimension of its boundary</b> has been approximated numerically by Chang & Zhang.
+                        <br />
+                        In fact it can be found analytically:
+                        <br />
+                        <img src="css/img/boundary_fractal_dimension.png" alt="The fractal dimension of its boundary" />
+                        <br />
+                        This is the root of the equation
+                        <br />
+                        <img src="css/img/Boundary_fractal_dimension_equation.png" alt="The equation of the fractal dimension of its boundary" />
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+        <h3>Settings</h3>
+        <section id="settings">
+
+            <div id="settings-tabs">
+
+                <ul>
+                    <li><a href="#cleanup-tab">Pre working step</a></li>
+                    <li><a href="#renderer-settings-tab">Renderer settings</a></li>
+                    <li><a href="#dragon-curve-settings-tab">Dragon curve settings</a></li>
+                    <li><a href="#curves-settings-tab">Curves settings</a></li>
+                </ul>
+
+                <div id="cleanup-tab">
+                    To proceed to settings tabs, you are to clean the current dragon curve up.
+                    <br/>
+                    <br/>
+                    <button id="cleanup-curve">Cleanup dragon curve</button>
+                </div>
+
+                <div id="renderer-settings-tab">
+                    <table id="renderer-settings-table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Renderer :
+                            </td>
+                            <td>
+                                <div id="renderer-radio">
+                                    <input type="radio" id="canvas-renderer-radio" name="renderer-radio" value="canvas" /><label for="canvas-renderer-radio">Canvas</label>
+                                    <input type="radio" id="svg-renderer-radio" name="renderer-radio" value="svg" checked="checked" /><label for="svg-renderer-radio">SVG</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="container-width">Container width :</label>
+                            </td>
+                            <td>
+                                <input id="container-width" name="container-width" class="ui-widget ui-corner-all" value="1000" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="container-height">Container height :</label>
+                            </td>
+                            <td>
+                                <input id="container-height" name="container-height" class="ui-widget ui-corner-all" value="1000" />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="dragon-curve-settings-tab">
+                    <table id="dragon-curve-settings-table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label for="curves-number">Number of gragon curves ( 1 - minimum, 4 - maximum ):</label>
+                                    <span id="curves-number" class="highlighted-number" ></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="curves-number-slider"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="max-steps-allowed-spinner">Number of curve branches :</label>
+                            </td>
+                            <td>
+                                <input id="max-steps-allowed-spinner" name="max-steps-allowed" value="5" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="animate-motion-button">Animate branches motion : </label><span id="animate-motion-state" class="highlighted-number">on</span>
+                            </td>
+                            <td>
+                                <div class="on-off-button-holder">
+                                    <span id="animate-motion-button" class="on-off-button on">&#xF011;</span>
+                                    <span></span>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="curves-settings-tab">
+                    <table id="curves-settings-table">
+                        <tbody>
+                            <tr>
+                            <td>
+                                <label for="initial-curve-settings">Initial curve settings :</label>
+                            </td>
+                            <td>
+                            <div id="initial-curve-settings">
+                            <ul>
+                                <li><a href="#curve-1-tab">curve 1</a></li>
+                                <li><a href="#curve-2-tab">curve 2</a></li>
+                                <li><a href="#curve-3-tab">curve 3</a></li>
+                                <li><a href="#curve-4-tab">curve 4</a></li>
+                            </ul>
+                            <div id="curve-1-tab">
+                                <h2>
+                                    Settings for the first curve
+                                </h2>
+                                <fieldset id="curve-1-color-settings">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Curve color selector
+                                    </p>
+                                    <div id="curve-1-red" class="red"></div>
+                                    <div id="curve-1-green" class="green"></div>
+                                    <div id="curve-1-blue" class="blue"></div>
+                                    <div id="curve-1-swatch" class="ui-widget-content ui-corner-all swatch"></div>
+                                    <span class="hex-holder">
+                                        <span class="hex-prefix">hex : #</span>
+                                        <span id="curve-1-hex" class="curve-hex"></span>
+                                    </span>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-1-coords">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Initial segment coordinates editor
+                                    </p>
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Segment length : </td>
+                                                <td>
+                                                    <input type="text" name="curve-1-segment-length" id="curve-1-segment-length" value="5" class="text ui-widget-content ui-corner-all" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Segment rotate angle : </td>
+                                                <td>
+                                                    <div id="curve-1-segment-angle"></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-1-width">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Curve width
+                                    </p>
+                                    <span id="curve-1-width-value" class="highlighted-number curve-width-value"></span>
+                                    <div id="curve-1-width-slider" class="curve-width-slider"></div>
+                                </fieldset>
+                            </div>
+                            <div id="curve-2-tab">
+                                <h2>
+                                    Settings for the second curve
+                                </h2>
+                                <fieldset id="curve-2-color-settings">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+
+                                            </span>
+                                        Curve color selector
+                                    </p>
+                                    <div id="curve-2-red" class="red"></div>
+                                    <div id="curve-2-green" class="green"></div>
+                                    <div id="curve-2-blue" class="blue"></div>
+                                    <div id="curve-2-swatch" class="ui-widget-content ui-corner-all swatch"></div>
+                                    <span class="hex-holder">
+                                        <span class="hex-prefix">hex : #</span>
+                                        <span id="curve-2-hex" class="curve-hex"></span>
+                                    </span>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-2-coords">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Initial segment coordinates editor
+                                    </p>
+
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>Segment length : </td>
+                                            <td>
+                                                <input type="text" name="curve-2-segment-length" id="curve-2-segment-length" value="5" class="text ui-widget-content ui-corner-all" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Segment rotate angle : </td>
+                                            <td>
+                                                <div id="curve-2-segment-angle"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-2-width">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Curve width
+                                    </p>
+                                    <span id="curve-2-width-value" class="highlighted-number curve-width-value"></span>
+                                    <div id="curve-2-width-slider" class="curve-width-slider"></div>
+                                </fieldset>
+                            </div>
+                            <div id="curve-3-tab">
+                                <h2>
+                                    Settings for the third curve
+                                </h2>
+                                <fieldset id="curve-3-color-settings">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+
+                                            </span>
+                                        Curve color selector
+                                    </p>
+                                    <div id="curve-3-red" class="red"></div>
+                                    <div id="curve-3-green" class="green"></div>
+                                    <div id="curve-3-blue" class="blue"></div>
+                                    <div id="curve-3-swatch" class="ui-widget-content ui-corner-all swatch"></div>
+                                    <span class="hex-holder">
+                                        <span class="hex-prefix">hex : #</span>
+                                        <span id="curve-3-hex" class="curve-hex"></span>
+                                    </span>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-3-coords">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Initial segment coordinates editor
+                                    </p>
+
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>Segment length : </td>
+                                            <td>
+                                                <input type="text" name="curve-3-segment-length" id="curve-3-segment-length" value="5" class="text ui-widget-content ui-corner-all" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Segment rotate angle : </td>
+                                            <td>
+                                                <div id="curve-3-segment-angle"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-3-width">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Curve width
+                                    </p>
+                                    <span id="curve-3-width-value" class="highlighted-number curve-width-value"></span>
+                                    <div id="curve-3-width-slider" class="curve-width-slider"></div>
+                                </fieldset>
+                            </div>
+                            <div id="curve-4-tab">
+                                <h2>
+                                    Settings for the fourth curve
+                                </h2>
+                                <fieldset id="curve-4-color-settings">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+
+                                            </span>
+                                        Curve color selector
+                                    </p>
+                                    <div id="curve-4-red" class="red"></div>
+                                    <div id="curve-4-green" class="green"></div>
+                                    <div id="curve-4-blue" class="blue"></div>
+                                    <div id="curve-4-swatch" class="ui-widget-content ui-corner-all swatch"></div>
+                                    <span class="hex-holder">
+                                        <span class="hex-prefix">hex : #</span>
+                                        <span id="curve-4-hex" class="curve-hex"></span>
+                                    </span>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-4-coords">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Initial segment coordinates editor
+                                    </p>
+
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>Segment length : </td>
+                                            <td>
+                                                <input type="text" name="curve-4-segment-length" id="curve-4-segment-length" value="5" class="text ui-widget-content ui-corner-all" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Segment rotate angle : </td>
+                                            <td>
+                                                <div id="curve-4-segment-angle"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                                <br />
+                                <fieldset id="curve-4-width">
+                                    <p class="ui-state-default ui-corner-all ui-helper-clearfix ui-custom-panel" style="padding: 4px;">
+                                            <span class="ui-icon ui-icon-pencil" style="float: left; margin: -2px 5px 0 0;">
+                                            </span>
+                                        Curve width
+                                    </p>
+                                    <span id="curve-4-width-value" class="highlighted-number curve-width-value"></span>
+                                    <div id="curve-4-width-slider" class="curve-width-slider"></div>
+                                </fieldset>
+                            </div>
+                            </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <button id="start">Start</button>
+        </section>
+
+        <h3>Drawing area</h3>
+        <div id="drawing-area">
+            <div id="progressbar"></div>
+
+
+            <div id="size-slider-container">
+                <div id="size-label-container">
+                    <label for="size">Size :</label>
+                    <span id="size" class="highlighted-number"></span>%
+                </div>
+
+                <div id="size-slider">
+
+                </div>
+            </div>
+            <div id="drawing-area-container">
+                <div id="canvas-container">
+
+                </div>
+                <div id="svg-container">
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="notification-dialog" class="notification-dialog">
+        <p>
+            <span id="notification-dialog-icon-holder"></span>
+            <span id="notification-dialog-content">
+
+            </span>
+        </p>
+        <p id="notification-dialog-question">
+
+        </p>
+    </div>
+
+</body>
+</html>

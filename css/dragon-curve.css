@@ -1,0 +1,272 @@
+h1 {
+    color: #39F;
+    background: none;
+    font-weight: bold;
+    margin: 30px 0 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid #DDD;
+}
+.clarification {
+    font-weight: normal;
+    font-size: x-small;
+    color: #555;
+    margin-bottom: 20px;
+}
+#about b{
+    color: #39F;
+}
+.highlighted-number {
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+}
+
+.curve-edit-coords-dialog-form .label-margin {
+    margin-left: 4em;
+}
+.curve-edit-coords-dialog-form input {
+    width: 3em;
+}
+
+#curves-number-slider,
+#max-steps-allowed-spinner {
+    width: 200px;
+}
+
+#renderer-settings-table td,
+#curves-settings-table td {
+    padding: 10px 20px;
+
+    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+    font-size: 1.1em/*{fsDefault}*/;
+    font-weight: normal/*{fwDefault}*/;
+    color: #555/*{fcDefault}*/;
+}
+
+.ui-widget-overlay{
+    z-index: 999;
+}
+.ui-dialog.ui-widget.ui-widget-content {
+    z-index: 1000;
+}
+
+.ui-tabs-vertical {
+    width: 55em;
+}
+.ui-tabs-vertical .ui-tabs-nav {
+    padding: .2em .1em .2em .2em;
+    float: left; width: 12em;
+}
+.ui-tabs-vertical .ui-tabs-nav li {
+    clear: left;
+    width: 100%;
+    border-bottom-width: 1px !important;
+    border-right-width: 0 !important;
+    margin: 0 -1px .2em 0;
+}
+.ui-tabs-vertical .ui-tabs-nav li a {
+    display:block;
+}
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+    padding-right: .1em;
+    border-right-width: 1px;
+    border-right-width: 1px;
+}
+.ui-tabs-vertical .ui-tabs-panel {
+    padding: 1em;
+    float: right;
+    width: 40em;
+}
+
+.ui-custom-panel {
+    background-color: #39F !important;
+    color: white !important;
+}
+fieldset {
+    border: 2px solid #DDD;
+}
+
+/* jQuery slider colorpicker settings */
+.red, .green, .blue {
+    float: left;
+    clear: left;
+    width: 300px;
+    margin: 15px;
+}
+.swatch {
+    width: 120px;
+    height: 100px;
+    margin-top: 18px;
+    margin-left: 350px;
+    background-image: none;
+}
+.red .ui-slider-range { background: #ef2929; }
+.red .ui-slider-handle { border-color: #ef2929; }
+.green .ui-slider-range { background: #8ae234; }
+.green .ui-slider-handle { border-color: #8ae234; }
+.blue .ui-slider-range { background: #729fcf; }
+.blue .ui-slider-handle { border-color: #729fcf; }
+
+.curve-width-slider {
+    width: 10em;
+    display : inline-block;
+}
+
+.curve-width-value {
+    display: inline;
+    margin: 0 2em;
+}
+
+.hex-holder {
+    margin-left: 1em;
+}
+.curve-hex {
+    border: 0;
+    text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+    font-weight: bold;
+}
+
+/* on-off button style */
+.on-off-button-holder{
+    margin: 10px 0;
+    width: 75px;
+    height: 95px;
+    position: relative;
+    text-align: center;
+}
+
+:active, :focus {
+    outline: 0;
+}
+/** Font-Face **/
+@font-face {
+    font-family: "FontAwesome";
+    src: url("fonts/fontawesome-webfont.eot");
+    src: url("fonts/fontawesome-webfont.eot?#iefix") format('eot'),
+    url("fonts/fontawesome-webfont.woff") format('woff'),
+    url("fonts/fontawesome-webfont.ttf") format('truetype'),
+    url("fonts/fontawesome-webfont.svg#FontAwesome") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/** Styling the Button **/
+.on-off-button {
+    font-family: "FontAwesome";
+    text-shadow: 0px 1px 1px rgba(250,250,250,0.1);
+    font-size: 32pt;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    box-shadow: 0px 3px 0px 0px rgb(34,34,34),
+    0px 7px 10px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -12px 35px 0px rgba(0, 0, 0, .5);
+    width: 70px;
+    height: 70px;
+    border: 0;
+    color: rgb(187,187,187)/*rgb(37,37,37)*/;
+    border-radius: 35px;
+    text-align: center;
+    line-height: 79px;
+    background-color: white/*rgb(83,87,93)*/;
+    cursor: pointer;
+
+    transition: color 350ms ease, text-shadow 350ms;
+    -o-transition: color 350ms ease, text-shadow 350ms;
+    -moz-transition: color 350ms ease, text-shadow 350ms;
+    -webkit-transition: color 350ms ease, text-shadow 350ms;
+}
+.on-off-button:before {
+    content: "";
+    width: 80px;
+    height: 80px;
+    display: block;
+    z-index: -2;
+    position: absolute;
+    background-color: white/*rgb(26,27,29)*/;
+    left: -5px;
+    top: -4px;
+    border-radius: 40px;
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+    inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.on-off-button:active {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+    0px 3px 7px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+    background-color: rgb(135,187,83)/*rgb(83,87,93)*/;
+    top: 3px;
+}
+.on-off-button.on {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+    0px 3px 7px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+    background-color: rgb(135,187,83)/*rgb(83,87,93)*/;
+    top: 3px;
+    color: #fff;
+    text-shadow: 0px 0px 3px rgb(250,250,250);
+}
+.on-off-button:active:before, .on-off-button.on:before {
+    top: -4px;
+    background-color: white/*rgb(26,27,29)*/;
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+    inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* Styling the Indicator light */
+.on-off-button + span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: rgb(226,0,0);
+    box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(226,0,0,0.5);
+    border-radius: 4px;
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    left: 31.5px;
+    transition: background-color 350ms, box-shadow 700ms;
+    -o-transition: background-color 350ms, box-shadow 700ms;
+    -moz-transition: background-color 350ms, box-shadow 700ms;
+    -webkit-transition: background-color 350ms, box-shadow 700ms;
+}
+.on-off-button.on + span {
+    box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(135,187,83,0.5);
+    background-color: rgb(135,187,83);
+}
+
+.notification-dialog{
+    display: none;
+}
+#notification-dialog-icon-holder{
+    float: left;
+    margin: 0 7px 50px 0;
+}
+
+#drawing-area-container{
+    height: 1000px;
+    overflow: auto;
+}
+#size-slider-container{
+    margin: 10px 0;
+}
+#size-label-container{
+    float: left;
+    width: 100px;
+}
+#size-slider{
+    display: inline-block;
+    width: 500px;
+    padding: 0;
+    margin-left: 20px;
+}
+#size-slider .ui-slider-handle{
+    /*left: 5px;*/
+}
+#dragon-curve-settings-table{
+    border-spacing: 15px;
+}
